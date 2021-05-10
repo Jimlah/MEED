@@ -24,7 +24,7 @@
                 <div class="flex items-center justify-between space-x-1">
                     <input type="checkbox" name="remember" value="true"> <span>Remember me</span>
                 </div>
-                <a href="" class="text-blue-500">Forgot your Password?</a>
+                <a href="{{ route('showRecoverPassword') }}" class="text-blue-500">Forgot your Password?</a>
             </div>
             <button type="submit" class="w-full py-2 font-bold text-white bg-blue-600 hover:bg-blue-800">Login</button>
         </form>

@@ -13,7 +13,6 @@ class LoginController extends Controller
 {
     public function index()
     {
-      // dd('hello');
         return view('auth.login');
     }
 
@@ -25,6 +24,7 @@ class LoginController extends Controller
             if (auth()->user()->role === User::USER_ADMIN || auth()->user()->role === User::USER_MEMBER) {
                 return redirect()->route('dashboards.index');
             }
+            dd(auth()->user()->role);
 
             if (auth()->user()->role === User::USER_CLIENT) {
                 return redirect()->route('requests.index');
@@ -32,5 +32,12 @@ class LoginController extends Controller
         }
         session()->flash('error', "You are unable to login");
         return redirect()->back();
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        session()->flash('success', "You have successfully logged out");
+        return redirect()->route('auth.login');
     }
 }

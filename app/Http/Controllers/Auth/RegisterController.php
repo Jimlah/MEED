@@ -28,4 +28,14 @@ class RegisterController extends Controller
 
         return redirect('login');
     }
+
+    public function showRecoverPassword()
+    {
+      return view('auth.recover-password');
+    }
+
+    public function recoverPassword()
+    {
+      return view('auth.recover-password');
+    }
 }
