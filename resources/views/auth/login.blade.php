@@ -22,7 +22,7 @@
             </div>
             <div class="flex flex-wrap justify-between w-full text-sm ">
                 <div class="flex items-center justify-between space-x-1">
-                    <input type="checkbox" name="remember"> <span>Remember me</span>
+                    <input type="checkbox" name="remember" value="true"> <span>Remember me</span>
                 </div>
                 <a href="" class="text-blue-500">Forgot your Password?</a>
             </div>

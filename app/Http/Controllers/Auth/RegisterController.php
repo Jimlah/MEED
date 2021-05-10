@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -16,8 +16,14 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $validated = $request->except(['_token', 'password_confirmation']);
-        User::create($validated);
+        User::create([
+          'firstname' => $request->firstname,
+          'lastname' => $request->lastname,
+          'email' => $request->email,
+          'role' => User::USER_CLIENT,
+          'password' => Hash::make($request->password),
+        ]);
+
         session()->flash('success', 'You have successfully registered');
 
         return redirect('login');
