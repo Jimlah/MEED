@@ -16,7 +16,7 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $validated = $request->validated();
+        $validated = $request->except(['_token', 'password_confirmation']);
         User::create($validated);
         session()->flash('success', 'You have successfully registered');
 

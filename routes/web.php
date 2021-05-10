@@ -21,11 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login', [LoginController::class, 'index'])->name('showlogin');
-Route::post('login', [LoginController::class, 'login'])->name('login');
+Route::get('/login', [LoginController::class, 'index'])->name('showlogin');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
 
-Route::get('register', [RegisterController::class, 'index'])->name('showregister');
-Route::post('register', [RegisterController::class, 'login'])->name('register');
+Route::get('/register', [RegisterController::class, 'index'])->name('showregister');
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
-Route::resource('dashboards', DashboardController::class)->only('index');
-Route::resource('requests', RequestController::class);
+Route::resource('/dashboards', DashboardController::class)->only('index');
+Route::resource('/requests', RequestController::class);
