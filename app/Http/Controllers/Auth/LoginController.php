@@ -21,12 +21,11 @@ class LoginController extends Controller
         $validated = $request->except(['remember', '_token']);
         if (Auth::attempt($validated, $request->only('remember') ?? false) ) {
             session()->flash('success', "You have successfully logged in");
-            if (auth()->user()->role === User::USER_ADMIN || auth()->user()->role === User::USER_MEMBER) {
+            if (auth()->user()->role == User::USER_ADMIN || auth()->user()->role === User::USER_MEMBER) {
                 return redirect()->route('dashboards.index');
             }
-            dd(auth()->user()->role);
 
-            if (auth()->user()->role === User::USER_CLIENT) {
+            if (auth()->user()->role == User::USER_CLIENT) {
                 return redirect()->route('requests.index');
             }
         }
