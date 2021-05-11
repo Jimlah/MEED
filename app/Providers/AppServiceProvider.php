@@ -24,11 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::directive('pageroute', function () {
-            $path = explode('/', parse_url(url()->current())['path']);
-            array_shift($path);
-            $paths = implode(" > ", $path);
-            return "$paths";
-        });
+      //  
     }
 }

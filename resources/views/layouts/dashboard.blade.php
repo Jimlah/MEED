@@ -8,6 +8,8 @@
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/dash.js') }}"></script>
     <style>
         body {
             font-family: 'Nunito', sans-serif;
@@ -85,33 +87,132 @@
             </div>
             <div class="flex flex-col w-full h-full col-span-5 bg-white bg-opacity-70">
                 <div class="flex items-center justify-end px-5 py-1 space-x-3 bg-white bg-opacity-60">
-                    <div>
-                        <button class="flex flex-col justify-center">
+                    <div class="static flex flex-col" x-data="notify()">
+                        <button class="flex flex-col justify-center" x-on:click="toggle">
                             <span class="self-end text-[0.5rem] text-red-500">24</span>
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-[#0797E0]" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-[#0797E0]" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                                 </svg>
                             </span>
                         </button>
+                        <ul class="absolute flex flex-col mt-10 mr-5 text-sm text-gray-700 bg-white divide-y divide-gray-500 bg-opacity-80 -ml-28 divide-opacity-50"
+                            :class="{ 'hidden': isClose()}" x-on:click.away="close">
+                            <li>
+                                <a href="{{ route('requests.show', [1]) }}"
+                                    class="flex items-center px-2 py-1 space-x-2 ">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </span>
+                                    <span>
+                                        You have been attached to a complaint
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('requests.show', [1]) }}"
+                                    class="flex items-center px-2 py-1 space-x-2 ">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </span>
+                                    <span>
+                                        You have been attached to a complaint
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('requests.show', [1]) }}"
+                                    class="flex items-center px-2 py-1 space-x-2 ">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </span>
+                                    <span>
+                                        You have been attached to a complaint
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('requests.show', [1]) }}"
+                                    class="flex items-center justify-center px-2 py-1 space-x-2 text-[#0797E0]">
+                                    <span>
+                                        View all notification
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
 
-                    <div>
-                        <button>
+                    <div class="static flex flex-col" x-data="dropdown()">
+                        <button class="flex items-center justify-center" x-on:click="toggle">
+                            <img src="{{ asset('img/user.png') }}" class="w-10 h-10 rounded-full">
                             <span>
-                                message
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
                             </span>
                         </button>
+                        <ul class="absolute flex flex-col mt-12 mr-5 -ml-10 text-sm text-gray-700 bg-white divide-y divide-gray-500 bg-opacity-80 divide-opacity-50"
+                            :class="{ 'hidden': isClose() }" x-on:click.away="close">
+                            <li>
+                                <a href="{{ route('requests.show', [1]) }}"
+                                    class="flex items-center px-2 py-1 space-x-2 ">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </span>
+                                    <span>
+                                        profile
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('requests.show', [1]) }}"
+                                    class="flex items-center px-2 py-1 space-x-2 ">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                    </span>
+                                    <span>
+                                        settings
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
 
                 </div>
-                <div class="flex flex-col p-5 overscroll-auto">
-                  <div class="justify-self-start">
-                    @pageroute()
-                  </div class="">
-                    @yield('body')
+                <div class="flex flex-col w-full h-full p-5 space-y-3">
+                    <span class="text-xs text-gray-500 justify-self-start">
+                        {{ pagePath(url()->current()) }}
+                    </span>
+                    <div class="flex w-full h-full overscroll-auto">
+                        @yield('body')
+                    </div>
                 </div>
             </div>
         </div>
