@@ -20,7 +20,7 @@
     <div class="h-screen bg-center bg-cover" style="background-image: url('{{ asset('img/bg-image.jpg') }}');">
         <div class="grid w-full h-full grid-cols-6">
             <div class="flex flex-col justify-between col-span-1 py-2 bg-white bg-opacity-40">
-                <div class="flex flex-col items-start space-y-5">
+                <div class="flex flex-col items-start space-y-8">
                     <span class="flex items-center justify-start pl-5 space-x-1 text-xl font-bold text-[#0797E0]">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20"
@@ -35,7 +35,7 @@
                     </span>
                     <div class="flex flex-col space-y-2 text-gray-800">
                         <a href="{{ route('dashboards.index') }}"
-                            class="flex pl-5 space-x-1 text-sm border-l-2  {{ url()->current() == route('dashboards.index') ? 'text-[#0797E0] border-[#0797E0]' : '' }}">
+                            class="flex pl-5 space-x-1 text-sm border-l-2 hover:text-[#0797E0] hover:border-[#0797E0] {{ url()->current() == route('dashboards.index') ? 'text-[#0797E0] border-[#0797E0]' : '' }}">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -46,7 +46,7 @@
                             <span class="font-semibold">Dashbaord</span>
                         </a>
                         <a href="{{ route('requests.create') }}"
-                            class="flex pl-5 space-x-1 text-sm border-l-2  {{ url()->current() == route('requests.create') ? 'text-[#0797E0] border-[#0797E0]' : '' }}">
+                            class="flex pl-5 space-x-1 text-sm border-l-2 hover:text-[#0797E0] hover:border-[#0797E0] {{ url()->current() == route('requests.create') ? 'text-[#0797E0] border-[#0797E0]' : '' }}">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -57,7 +57,7 @@
                             <span class="font-semibold">Users</span>
                         </a>
                         <a href="{{ route('requests.index') }}"
-                            class="flex pl-5 space-x-1 text-sm border-l-2  {{ url()->current() == route('requests.index') ? 'text-[#0797E0] border-[#0797E0]' : '' }}">
+                            class="flex pl-5 space-x-1 text-sm border-l-2 hover:text-[#0797E0] hover:border-[#0797E0] {{ url()->current() == route('requests.index') ? 'text-[#0797E0] border-[#0797E0]' : '' }}">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
@@ -79,7 +79,7 @@
                                     d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                             </svg>
                         </span>
-                        <span class="font-semibold">LogOut</span>
+                        <span class="font-semibold">Logout</span>
                     </a>
                 </div>
             </div>
@@ -87,9 +87,9 @@
                 <div class="flex items-center justify-end px-5 py-1 space-x-3 bg-white bg-opacity-60">
                     <div>
                         <button class="flex flex-col justify-center">
-                            <span class="self-end text-[0.5rem]">24</span>
+                            <span class="self-end text-[0.5rem] text-red-500">24</span>
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24"
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-[#0797E0]" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -107,7 +107,10 @@
                     </div>
 
                 </div>
-                <div>
+                <div class="flex flex-col p-5 overscroll-auto">
+                  <div class="justify-self-start">
+                    @pageroute()
+                  </div class="">
                     @yield('body')
                 </div>
             </div>
