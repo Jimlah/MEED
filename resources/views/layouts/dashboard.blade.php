@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -18,9 +18,17 @@
 </head>
 
 <body>
-    <div class="h-screen bg-center bg-cover" style="background-image: url('{{ asset('img/bg-image.jpg') }}');">
+    <div class="static h-screen bg-center bg-cover" style="background-image: url('{{ asset('img/bg-image.jpg') }}');" x-data="nav()">
+        <button class="absolute mx-2 my-3 lg:hidden" x-on:click="toggle"
+        :class="{'hidden': isOpen() == false}">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
         <div class="grid w-full h-full grid-cols-6">
-            <div class="flex flex-col justify-between col-span-1 py-2 bg-white bg-opacity-40">
+            <div class="flex flex-col justify-between col-span-1 py-2 bg-white bg-opacity-40 lg:block"
+              :class="{'hidden': isOpen(), 'absolute h-screen  pr-5': isOpen() == false}"
+              x-on:click.away="close">
                 <div class="flex flex-col items-start space-y-8">
                     <span class="flex items-center justify-start pl-5 space-x-1 text-xl font-bold text-[#0797E0]">
                         <span>
@@ -84,8 +92,9 @@
                     </a>
                 </div>
             </div>
-            <div class="flex flex-col w-full h-full col-span-5 bg-white bg-opacity-70">
-                <div class="flex items-center justify-end px-5 py-1 space-x-3 bg-white bg-opacity-60">
+            <div class="flex flex-col w-full h-full col-span-6 bg-white lg:col-span-5 bg-opacity-70">
+                <div class="flex items-center justify-end w-full px-5 py-1 space-x-3 bg-white border bg-opacity-60">
+
                     <div class="static flex flex-col" x-data="notify()">
                         <button class="flex flex-col justify-center" x-on:click="toggle">
                             <span class="self-end text-[0.5rem] text-red-500">24</span>
@@ -203,7 +212,6 @@
                             </li>
                         </ul>
                     </div>
-
                 </div>
                 <div class="flex flex-col w-full h-full p-5 space-y-3">
                     <span class="text-xs text-gray-500 justify-self-start">
@@ -217,7 +225,7 @@
         </div>
     </div>
     @livewireScripts
-    <script src="{{ asset('js/app.js') }}" ></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/dash.js') }}"></script>
 </body>
 
