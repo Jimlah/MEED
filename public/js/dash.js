@@ -32,14 +32,12 @@ function nav() {
   return {
     show: true,
     toggle(){
-      console.log(this.show)
       this.show = false
     },
     close(){
       this.show = true
     },
     isOpen(){
-      console.log(this.show)
       return this.show
     }
   }
