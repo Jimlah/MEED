@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('body')
-    <div>
+    <div class="w-full h-full">
         <livewire:user-live/>
     </div>
 
