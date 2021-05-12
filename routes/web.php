@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\User\RequestController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -34,3 +35,4 @@ Route::post('/recover-password', [RegisterController::class, 'recoverPassword'])
 
 Route::resource('/dashboards', DashboardController::class)->only('index');
 Route::resource('/requests', RequestController::class);
+Route::resource('users', UserController::class);

@@ -8,8 +8,9 @@
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" ></script>
     <script src="{{ asset('js/dash.js') }}"></script>
+    @livewireStyles()
     <style>
         body {
             font-family: 'Nunito', sans-serif;
@@ -47,7 +48,7 @@
                             </span>
                             <span class="font-semibold">Dashbaord</span>
                         </a>
-                        <a href="{{ route('requests.create') }}"
+                        <a href="{{ route('users.index') }}"
                             class="flex pl-5 space-x-1 text-sm border-l-2 hover:text-[#0797E0] hover:border-[#0797E0] {{ url()->current() == route('requests.create') ? 'text-[#0797E0] border-[#0797E0]' : '' }}">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
@@ -72,7 +73,7 @@
                     </div>
                 </div>
                 <div class="mb-5">
-                    <a href="{{ route('requests.index') }}"
+                    <a href="{{ route('logout') }}"
                         class="flex pl-5 space-x-1 text-sm border-l-2 hover:text-[#0797E0] hover:border-[#0797E0]">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#0797E0]" fill="none"
@@ -217,6 +218,7 @@
             </div>
         </div>
     </div>
+    @livewireScripts
 </body>
 
 </html>

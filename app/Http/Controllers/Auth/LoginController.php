@@ -19,12 +19,12 @@ class LoginController extends Controller
     public function login(LoginRequest $request)
     {
         $validated = $request->except(['remember', '_token']);
+        
         if (Auth::attempt($validated, $request->only('remember') ?? false) ) {
             session()->flash('success', "You have successfully logged in");
             if (auth()->user()->role == User::USER_ADMIN || auth()->user()->role === User::USER_MEMBER) {
                 return redirect()->route('dashboards.index');
             }
-
             if (auth()->user()->role == User::USER_CLIENT) {
                 return redirect()->route('requests.index');
             }
@@ -37,6 +37,6 @@ class LoginController extends Controller
     {
         Auth::logout();
         session()->flash('success', "You have successfully logged out");
-        return redirect()->route('auth.login');
+        return redirect()->route('login');
     }
 }
