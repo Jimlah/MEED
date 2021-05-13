@@ -17,7 +17,7 @@ class CreateRequestsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('request_type_id');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

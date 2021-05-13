@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Search;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,7 +10,11 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Search;
+
+    const USER_ADMIN = 1;
+    const USER_MEMBER = 2;
+    const USER_CLIENT = 3;
 
     /**
      * The attributes that are mass assignable.
@@ -17,10 +22,22 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'lastname',
         'email',
+        'role',
+        'department_id',
         'password',
     ];
+
+    protected  $searchable = [
+      'firstname',
+      'lastname',
+      'email',
+      'role',
+      'department_id',
+      'password',
+  ];
 
     /**
      * The attributes that should be hidden for arrays.
