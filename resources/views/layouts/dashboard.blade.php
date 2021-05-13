@@ -21,13 +21,13 @@
     <div class="static h-screen bg-center bg-cover" style="background-image: url('{{ asset('img/bg-image.jpg') }}');" x-data="nav()">
         <button class="absolute mx-2 my-3 lg:hidden" x-on:click="toggle"
         :class="{'hidden': isOpen() == false}">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-[#0797E0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
         <div class="grid w-full h-full grid-cols-6">
-            <div class="flex flex-col justify-between col-span-1 py-2 bg-white lg:pr-0 bg-opacity-40 lg:flex"
-              :class="{'hidden': isOpen(), 'absolute h-screen pr-5': isOpen() == false}"
+            <div class="flex flex-col justify-between col-span-1 py-2 bg-white lg:pr-0 lg:bg-opacity-40 lg:flex"
+              :class="{'hidden': isOpen(), 'absolute h-screen pr-5 bg-opacity-90': isOpen() == false}"
               x-on:click.away="close">
                 <div class="flex flex-col items-start space-y-8">
                     <span class="flex items-center justify-start pl-5 space-x-1 text-xl font-bold text-[#0797E0]">

@@ -572,6 +572,9 @@ video {
 .col-span-6 {
 	grid-column: span 6 / span 6;
 }
+.col-span-2 {
+	grid-column: span 2 / span 2;
+}
 .mx-2 {
 	margin-left: 0.5rem;
 	margin-right: 0.5rem;
@@ -658,6 +661,12 @@ video {
 .grid-cols-6 {
 	grid-template-columns: repeat(6, minmax(0, 1fr));
 }
+.grid-cols-2 {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid-cols-1 {
+	grid-template-columns: repeat(1, minmax(0, 1fr));
+}
 .flex-col {
 	flex-direction: column;
 }
@@ -681,6 +690,9 @@ video {
 }
 .justify-end {
 	justify-content: flex-end;
+}
+.gap-5 {
+	gap: 1.25rem;
 }
 .space-y-5 > :not([hidden]) ~ :not([hidden]) {
 	--tw-space-y-reverse: 0;
@@ -759,6 +771,9 @@ video {
 .border {
 	border-width: 1px;
 }
+.border-2 {
+	border-width: 2px;
+}
 .border-l-2 {
 	border-left-width: 2px;
 }
@@ -835,6 +850,9 @@ video {
 }
 .bg-opacity-90 {
 	--tw-bg-opacity: 0.9;
+}
+.bg-opacity-0 {
+	--tw-bg-opacity: 0;
 }
 .bg-cover {
 	background-size: cover;
@@ -923,6 +941,9 @@ video {
 .font-medium {
 	font-weight: 500;
 }
+.uppercase {
+	text-transform: uppercase;
+}
 .tracking-tighter {
 	letter-spacing: -0.05em;
 }
@@ -968,6 +989,10 @@ video {
 .text-green-500 {
 	--tw-text-opacity: 1;
 	color: rgba(16, 185, 129, var(--tw-text-opacity));
+}
+.text-gray-600 {
+	--tw-text-opacity: 1;
+	color: rgba(75, 85, 99, var(--tw-text-opacity));
 }
 .antialiased {
 	-webkit-font-smoothing: antialiased;
@@ -1034,12 +1059,36 @@ video {
 }
 @media (min-width: 640px) {
 
+	.sm\:col-span-2 {
+		grid-column: span 2 / span 2;
+	}
+
+	.sm\:grid-cols-2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
 	.sm\:px-36 {
 		padding-left: 9rem;
 		padding-right: 9rem;
 	}
 }
 @media (min-width: 768px) {
+
+	.md\:col-span-1 {
+		grid-column: span 1 / span 1;
+	}
+
+	.md\:col-span-2 {
+		grid-column: span 2 / span 2;
+	}
+
+	.md\:block {
+		display: block;
+	}
+
+	.md\:grid-cols-2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
 
 	.md\:px-20 {
 		padding-left: 5rem;
@@ -1070,6 +1119,10 @@ video {
 
 	.lg\:hidden {
 		display: none;
+	}
+
+	.lg\:bg-opacity-40 {
+		--tw-bg-opacity: 0.4;
 	}
 
 	.lg\:pr-0 {

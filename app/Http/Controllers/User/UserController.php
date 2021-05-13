@@ -29,7 +29,14 @@ class UserController extends Controller
    */
   public function create()
   {
-    //
+    $roles = [
+      User::USER_ADMIN => "Admin",
+      User::USER_MEMBER => "Member",
+      User::USER_CLIENT => "Client",
+    ];
+    return view('user.user.create', [
+      "roles" => $roles
+    ]);
   }
 
   /**
