@@ -37,7 +37,7 @@
                     <th class="px-6 py-3 text-sm font-bold tracking-wider border-b-2 border-gray-800">Role</th>
                     <th class="px-6 py-3 text-sm font-bold tracking-wider border-b-2 border-gray-800">Status</th>
                     <th class="px-6 py-3 text-sm font-bold tracking-wider border-b-2 border-gray-800">
-                      Action
+                        Action
                     </th>
                 </tr>
             </thead>
@@ -55,32 +55,47 @@
                         <td
                             class="px-6 py-2 text-sm font-bold text-gray-500 border-b border-gray-800 border-opacity-50 whitespace-nowrap">
                             <span>
-                              {{ $user->email }}
+                                {{ $user->email }}
                             </span>
                         </td>
                         <td
                             class="px-6 py-2 text-sm font-bold text-gray-500 border-b border-gray-800 border-opacity-50 whitespace-nowrap">
-                          <span>
-                            {{ $user->role() }}
-                          </span>
+                            <span>
+                                {{ $user->role() }}
+                            </span>
                         </td>
                         <td
                             class="px-6 py-2 text-sm font-bold text-gray-500 border-b border-gray-800 border-opacity-50 whitespace-nowrap">
                             <div class="group">
-                              <span class="px-2 py-1 text-white bg-green-500 bg-opacity-40 group-hover:hidden">
-                                Active
-                              </span>
-                              <span class="hidden text-black group-hover:block">
-                                Action
-                              </span>
+                                <span class="px-2 py-1 text-white bg-green-500 bg-opacity-40 group-hover:hidden">
+                                    Active
+                                </span>
+                                <span class="hidden text-black group-hover:block">
+                                    <input type="range" min="0" max="1" class="w-8 h-4 py-2 bg-green-500">
+                                </span>
                             </div>
                         </td>
                         <td
                             class="px-6 py-2 text-sm font-bold text-gray-500 border-b border-gray-800 border-opacity-50 whitespace-nowrap">
                             <div class="flex space-x-1">
-                              <span>view</span>
-                              <span>edit</span>
-                              <span>delete</span>
+                                <a href="{{ route('users.show', [$user->id]) }}">
+                                    <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                                        </path>
+                                    </svg>
+                                </a>
+                                <a href="{{ route('users.edit', [$user->id]) }}">
+                                    <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                        </path>
+                                    </svg>
+                                  </a>
                             </div>
                         </td>
 
@@ -88,6 +103,11 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="">
+          <button>Prev</button>
+          <span>10</span>
+          <button>Next</button>
+        </div>
     </div>
 
 
