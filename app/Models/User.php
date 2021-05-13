@@ -60,4 +60,27 @@ class User extends Authenticatable
   {
     return $this->belongsTo(self::class, 'org_id');
   }
+
+  public function role()
+  {
+    switch ($this->role) {
+      case self::USER_SUPER_ADMIN :
+          $role = "Super Admin";
+        break;
+        case self::USER_ADMIN :
+          $role = "Admin";
+        break;
+        case self::USER_CLIENT :
+          $role = "Client";
+        break;
+        case self::USER_MEMBER :
+          $role = "Member";
+        break;
+
+      default:
+          $role = "Unknown";
+        break;
+    }
+    return $role;
+  }
 }
