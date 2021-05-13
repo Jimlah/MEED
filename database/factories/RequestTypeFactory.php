@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\RequestType;
+use Faker\Factory as FakerFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RequestTypeFactory extends Factory
@@ -21,8 +22,9 @@ class RequestTypeFactory extends Factory
      */
     public function definition()
     {
+      $faker = FakerFactory::create();
         return [
-          'name'
+          'name' => $faker->word()
         ];
     }
 }

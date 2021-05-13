@@ -17,6 +17,8 @@ class RequestController extends Controller
    */
   public function index()
   {
+    $user = RequestType::inRandomOrder()->first()->id;
+    dd($user);
     return view('user.request.index');
   }
 
