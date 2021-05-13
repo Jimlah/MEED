@@ -16,7 +16,7 @@ class UserController extends Controller
   public function index(Request $request)
   {
     $users = User::search($request->q)->paginate(10);
-
+    $users->appends(['q'=> $request->q]);
     return view("user.user.index", [
       'users' => $users
     ]);

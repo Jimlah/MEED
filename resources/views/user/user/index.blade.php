@@ -1,12 +1,12 @@
 @extends('layouts.dashboard')
 
 @section('body')
-    <div class="w-full h-full p-5 overflow-x-auto bg-white shadow-sm bg-opacity-90">
+    <div class="w-full h-full p-5 space-y-2 overflow-x-auto bg-white shadow-sm bg-opacity-90">
         <div class="flex flex-wrap items-center justify-between w-full">
             <div>
                 <form method="GET" action=""
                     class="flex items-center justify-start bg-transparent bg-white border-b border-gray-500">
-                    <input type="search" name="q" class="px-3 py-2 focus:outline-none">
+                    <input type="search" name="q" class="px-3 py-2 focus:outline-none" value="{{ old('q') }}">
                     <button type="submit">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -95,7 +95,7 @@
                                             d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
                                         </path>
                                     </svg>
-                                  </a>
+                                </a>
                             </div>
                         </td>
 
@@ -103,11 +103,23 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="">
-          <button>Prev</button>
-          <span>10</span>
-          <button>Next</button>
-        </div>
+        @if ($users->hasPages())
+        <div class="flex items-center justify-start space-x-1">
+          <a href="{{ $users->previousPageUrl() }}" class="p-1 bg-gray-300 rounded-full {{ $users->onFirstPage() ? 'bg-gray-100 ' : " hover:bg-gray-200" }}">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+          </a>
+          <span>{{ $users->currentPage() }}</span>
+          <a href="{{ $users->nextPageUrl() }}" class="p-1 bg-gray-300 rounded-full {{ $users->hasMorePages() ? ' hover:bg-gray-200' : "bg-gray-100" }}">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+          </a>
+      </div>
+        @endif
     </div>
 
 

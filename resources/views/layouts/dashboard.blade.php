@@ -214,7 +214,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col w-full h-full p-5 space-y-3">
-                    <span class="text-xs text-gray-500 justify-self-start">
+                    <span class="text-xs font-bold text-gray-500 justify-self-start">
                         {{ pagePath(url()->current()) }}
                     </span>
                     <div class="flex w-full h-full overscroll-auto">
