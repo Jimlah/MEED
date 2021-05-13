@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -45,9 +46,16 @@ class UserController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
+  public function store(UserRequest $request)
   {
-    //
+    User::create([
+      'firstname' => $request->firstname,
+      'lastname' => $request->lastname,
+      'email' => $request->email,
+      'role' => $request->role,
+    ]);
+
+    return redirect()->back();
   }
 
   /**

@@ -3,7 +3,10 @@
 @section('body')
     <div class="grid w-full h-full grid-cols-2">
         <div class="p-5 bg-white md:col-span-1 col-span-full bg-opacity-90">
-            <form action="{{ route('users.store') }}" class="">
+            <form action="{{ route('users.store') }}" class="" method="POST">
+                <div class="hidden">
+                  @csrf
+                </div>
                 <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
                     <div class="flex flex-col col-span-1 md:col-span-2">
                         <label for="firstname" class="text-sm font-bold text-gray-700 uppercase">First Name</label>
@@ -29,7 +32,8 @@
                         </select>
                     </div>
                     <div class="flex flex-col col-span-1 md:col-span-2">
-                      <button type="submit" class="px-3 py-2 bg-[#0797E0] text-white font-bold hover:bg-blue-600">Submit</button>
+                        <button type="submit"
+                            class="px-3 py-2 bg-[#0797E0] text-white font-bold hover:bg-blue-600">Submit</button>
                     </div>
                 </div>
             </form>
