@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\Search;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Request extends Model
 {
-    use HasFactory;
+    use HasFactory, Search;
 
     /**
      * The attributes that are mass assignable.
@@ -15,8 +16,24 @@ class Request extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id',
+        'client_id',
+        'org_id',
         'request_type_id',
         'description',
+        'status',
+        'priority',
+        'period',
     ];
+
+    /**
+     * searchable attributes
+     *
+     * @var array
+     */
+    protected $searchable = [
+      'description',
+      'status',
+      'priority',
+      'period',
+  ];
 }

@@ -15,8 +15,6 @@ class CreateRequestTypesTable extends Migration
     {
         Schema::create('request_types', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('department_id');
-            $table->unsignedBigInteger('request_type_id');
             $table->string('name');
             $table->timestamps();
         });
