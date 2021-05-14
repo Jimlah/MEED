@@ -34,7 +34,7 @@
                     </div>
                     <div class="flex flex-col col-span-1 md:col-span-2">
                         <button type="submit"
-                            class="px-3 py-2 bg-[#0797E0] text-white font-bold hover:bg-blue-600">Submit</button>
+                            class="px-3 py-2 bg-[#0797E0] text-white font-bold hover:bg-blue-600">Update</button>
                     </div>
                 </div>
             </form>

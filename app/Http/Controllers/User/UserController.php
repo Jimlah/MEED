@@ -73,7 +73,7 @@ class UserController extends Controller
       User::USER_MEMBER => "Member",
       User::USER_CLIENT => "Client",
     ];
-    return view("user.user.edit", [
+    return view("user.user.show", [
       'user' => $user,
       'roles' => $roles
     ]);

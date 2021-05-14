@@ -35,7 +35,7 @@
                 <input type="password" id="password_confirmation" name="password_confirmation"
                     class="w-full px-3 py-2 text-sm bg-transparent border border-gray-500 rounded focus:border-gray-700 focus:bg-gray-100">
             </div>
-            <button type="submit" class="w-full py-2 font-bold text-white bg-blue-600 hover:bg-blue-800">Login</button>
+            <button type="submit" class="w-full py-2 font-bold text-white bg-blue-600 hover:bg-blue-800">Register</button>
         </form>
         <span class="text-sm">
             Already have an account? <a href="{{ route('showlogin') }}" class="text-sm text-blue-500">Login</a>
