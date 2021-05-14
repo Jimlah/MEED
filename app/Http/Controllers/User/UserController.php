@@ -66,7 +66,8 @@ class UserController extends Controller
    */
   public function show($id)
   {
-    //
+    dd('hey');
+    return view("user.user.edit");
   }
 
   /**
@@ -77,7 +78,7 @@ class UserController extends Controller
    */
   public function edit($id)
   {
-    //
+    return view("user.user.edit");
   }
 
   /**
