@@ -3,6 +3,6 @@
 @section('body')
 
 
-  <livewire:alerts>
+ 
 
 @endsection
