@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Models\Request as ModelsRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class UserController extends Controller
   public function index(Request $request)
   {
     $users = User::search($request->q)->paginate(10);
-    $users->appends(['q'=> $request->q]);
+    $users->appends(['q' => $request->q]);
     return view("user.user.index", [
       'users' => $users
     ]);
@@ -66,8 +67,16 @@ class UserController extends Controller
    */
   public function show($id)
   {
-    dd('hey');
-    return view("user.user.edit");
+    $user = User::find($id);
+    $roles = [
+      User::USER_ADMIN => "Admin",
+      User::USER_MEMBER => "Member",
+      User::USER_CLIENT => "Client",
+    ];
+    return view("user.user.edit", [
+      'user' => $user,
+      'roles' => $roles
+    ]);
   }
 
   /**
@@ -78,6 +87,16 @@ class UserController extends Controller
    */
   public function edit($id)
   {
+    $user = User::find($id);
+    $roles = [
+      User::USER_ADMIN => "Admin",
+      User::USER_MEMBER => "Member",
+      User::USER_CLIENT => "Client",
+    ];
+    return view("user.user.edit", [
+      'user' => $user,
+      'roles' => $roles
+    ]);
     return view("user.user.edit");
   }
 
@@ -90,7 +109,14 @@ class UserController extends Controller
    */
   public function update(Request $request, $id)
   {
-    //
+    $user = User::find($id);
+    $user->firstname = $request->firstname;
+    $user->lastname = $request->lastname;
+    $user->email = $request->email;
+    $user->role = $request->role;
+    $user->save();
+
+    return redirect()->back();
   }
 
   /**
