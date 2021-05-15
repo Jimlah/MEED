@@ -11,9 +11,10 @@
             </div>
             <div>
                 <div class="" x-show="tab === 'foo'">
-                    <form action="{{ route('requests.store') }}" class="" method="POST">
+                    <form action="{{ route('requests.update') }}" class="" method="POST">
                         <div class="hidden">
                             @csrf
+                            @method('PUT')
                             <input type="text" name="type" value="self">
                         </div>
                         <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -44,9 +45,10 @@
                 </div>
 
                 <div class="" x-show="tab === 'bar'">
-                    <form action="{{ route('requests.store') }}" class="" method="POST">
+                    <form action="{{ route('requests.update') }}" class="" method="POST">
                         <div class="hidden">
                             @csrf
+                            @method('PUT')
                             <input type="text" name="type" value="others">
                         </div>
                         <div class="grid grid-cols-1 gap-5 md:grid-cols-2">

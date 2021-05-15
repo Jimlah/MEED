@@ -35,6 +35,6 @@ Route::get('/recover-password', [RegisterController::class, 'showRecoverPassword
 Route::post('/recover-password', [RegisterController::class, 'recoverPassword'])->name('recoverPassword');
 
 Route::resource('/dashboards', DashboardController::class)->only('index');
-Route::resource('/requests', RequestController::class);
-Route::resource('users', UserController::class);
-Route::resource('request-types', RequestTypeController::class);
+Route::resource('/requests', RequestController::class)->except('destroy');
+Route::resource('users', UserController::class)->except('destroy');
+Route::resource('request-types', RequestTypeController::class)->except(['show', 'destroy']);

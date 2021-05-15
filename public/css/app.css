@@ -566,9 +566,6 @@ video {
 .right-0 {
 	right: 0px;
 }
-.z-50 {
-	z-index: 50;
-}
 .col-span-full {
 	grid-column: 1 / -1;
 }
@@ -610,11 +607,11 @@ video {
 .grid {
 	display: grid;
 }
-.table {
-	display: table;
-}
 .block {
 	display: block;
+}
+.table {
+	display: table;
 }
 .hidden {
 	display: none;
@@ -658,29 +655,17 @@ video {
 .w-8 {
 	width: 2rem;
 }
-.w-2 {
-	width: 0.5rem;
-}
-.w-24 {
-	width: 6rem;
-}
-.w-1 {
-	width: 0.25rem;
-}
 .w-12 {
 	width: 3rem;
 }
 .max-w-full {
 	max-width: 100%;
 }
-.table-auto {
-	table-layout: auto;
-}
 .table-fixed {
 	table-layout: fixed;
 }
-.resize {
-	resize: both;
+.table-auto {
+	table-layout: auto;
 }
 .resize-none {
 	resize: none;
@@ -906,6 +891,10 @@ video {
 	--tw-bg-opacity: 1;
 	background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
 }
+.bg-gray-100 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
+}
 .bg-\[\#0797E0\] {
 	--tw-bg-opacity: 1;
 	background-color: rgba(7, 151, 224, var(--tw-bg-opacity));
@@ -913,18 +902,6 @@ video {
 .bg-gray-300 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(209, 213, 219, var(--tw-bg-opacity));
-}
-.bg-gray-100 {
-	--tw-bg-opacity: 1;
-	background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
-}
-.bg-gray-200 {
-	--tw-bg-opacity: 1;
-	background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
-}
-.bg-black {
-	--tw-bg-opacity: 1;
-	background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
 }
 .bg-opacity-90 {
 	--tw-bg-opacity: 0.9;
@@ -1076,17 +1053,13 @@ video {
 	--tw-text-opacity: 1;
 	color: rgba(245, 158, 11, var(--tw-text-opacity));
 }
-.text-black {
-	--tw-text-opacity: 1;
-	color: rgba(0, 0, 0, var(--tw-text-opacity));
-}
 .text-green-500 {
 	--tw-text-opacity: 1;
 	color: rgba(16, 185, 129, var(--tw-text-opacity));
 }
-.text-gray-200 {
+.text-black {
 	--tw-text-opacity: 1;
-	color: rgba(229, 231, 235, var(--tw-text-opacity));
+	color: rgba(0, 0, 0, var(--tw-text-opacity));
 }
 .antialiased {
 	-webkit-font-smoothing: antialiased;
@@ -1099,10 +1072,6 @@ video {
 .shadow-sm {
 	--tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-.outline-none {
-	outline: 2px solid transparent;
-	outline-offset: 2px;
 }
 .hover\:border-\[\#0797E0\]:hover {
 	--tw-border-opacity: 1;

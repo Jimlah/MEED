@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RequestTypeRequest;
 use App\Models\RequestType;
 use Illuminate\Http\Request;
 
@@ -38,11 +39,11 @@ class RequestTypeController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
+  public function store(RequestTypeRequest $request)
   {
-    $request->except('_token');
-    
-
+    $reqType = $request->except('_token');
+    RequestType::create($reqType);
+    session()->flash('success', 'You have created a new Request Type');
     return redirect()->back();
   }
 
@@ -54,7 +55,7 @@ class RequestTypeController extends Controller
    */
   public function show($id)
   {
-    //
+
   }
 
   /**
@@ -65,6 +66,10 @@ class RequestTypeController extends Controller
    */
   public function edit($id)
   {
+    $reqType = RequestType::find($id);
+    return view('user.request-type.edit', [
+      "reqType" => $reqType
+    ]);
   }
 
   /**
@@ -74,9 +79,13 @@ class RequestTypeController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id)
+  public function update(RequestTypeRequest $request, $id)
   {
-    $request->save();
+    $reqType = RequestType::find($id);
+    $reqType->name = $request->name;
+    $reqType->save();
+    session()->flash("success", "You have successfull Updated Database");
+    return redirect()->back();
   }
 
   /**
