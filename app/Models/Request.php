@@ -5,12 +5,13 @@ namespace App\Models;
 use App\Models\User;
 use App\Traits\Search;
 use App\Models\RequestType;
+use App\Traits\Multitenantable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Request extends Model
 {
-  use HasFactory, Search;
+  use HasFactory, Search, Multitenantable;
 
   const STATUS_PENDING = 1;
   const STATUS_OPEN = 2;

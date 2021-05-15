@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\Search;
 use App\Models\VerifyUser;
+use App\Traits\Multitenantable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +12,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-  use HasFactory, Notifiable, Search;
+  use HasFactory, Notifiable;
+  use Search, Multitenantable;
 
   const USER_SUPER_ADMIN = 1;
   const USER_ADMIN = 2;
