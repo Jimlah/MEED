@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Acaronlex\LaravelCalendar\Calendar;
+use App\Models\Request;
+use Carbon\Carbon;
 
 class Calender extends Component
 {
@@ -11,21 +13,22 @@ class Calender extends Component
   {
     $events = [];
 
-    $events[] = Calendar::event(
-      'Event One', //event title
-      false, //full day event?
-      '2015-02-11T0800', //start time (you can also use Carbon instead of DateTime)
-      '2015-02-12T0800', //end time (you can also use Carbon instead of DateTime)
-      0 //optionally, you can specify an event ID
-    );
+    $requests = Request::all();
+    foreach ($requests as $request) {
+      $events[] = Calendar::event(
+        $request->request_type->name . " " . $request->client->firstname, //event title
+        true, //full day event?
+        new Carbon($request->created_at), //start time (you can also use Carbon instead of DateTime)
+        Carbon::now(), //end time (you can also use Carbon instead of DateTime)
+        $request->id,//optionally, you can specify an event ID
+        $options = [
+          "url" => route('requests.show', [$request->id])
+        ]
+      );
+    }
 
-    $events[] = Calendar::event(
-      "Valentine's Day", //event title
-      true, //full day event?
-      new \DateTime('2021-05-09'), //start time (you can also use Carbon instead of DateTime)
-      new \DateTime('2021-05-14'), //end time (you can also use Carbon instead of DateTime)
-      'stringEventId' //optionally, you can specify an event ID
-    );
+
+
 
     $calendar = new Calendar();
     $calendar->addEvents($events)
@@ -33,6 +36,7 @@ class Calender extends Component
         'locale' => 'en',
         'firstDay' => 0,
         'displayEventTime' => true,
+        'initialView' => 'dayGridMonth',
         'headerToolbar' => [
           'end' => 'today prev,next'
         ]
@@ -40,7 +44,9 @@ class Calender extends Component
     $calendar->setId('1');
     $calendar->setCallbacks([
       'select' => 'function(selectionInfo){}',
-      'eventClick' => 'function(event){}'
+      'eventClick' => 'function(event){
+        window.location = event.event.url
+      }'
     ]);
 
     return view('livewire.calender', [

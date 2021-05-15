@@ -85,7 +85,7 @@ class RequestController extends Controller
   {
     $req = RequestModel::find($id);
 
-    return view('user.request.index', [
+    return view('user.request.show', [
       "reqmod" => $req
     ]);
   }
