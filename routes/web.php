@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\User\RequestController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\User\RequestTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +37,4 @@ Route::post('/recover-password', [RegisterController::class, 'recoverPassword'])
 Route::resource('/dashboards', DashboardController::class)->only('index');
 Route::resource('/requests', RequestController::class);
 Route::resource('users', UserController::class);
+Route::resource('request-types', RequestTypeController::class);

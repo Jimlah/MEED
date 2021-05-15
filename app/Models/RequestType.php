@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use App\Traits\Search;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\Multitenantable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class RequestType extends Model
 {
