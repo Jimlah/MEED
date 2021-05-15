@@ -100,8 +100,8 @@ class RequestController extends Controller
   {
     $req = RequestModel::find($id);
 
-    if ($req->status == RequestModel::STATUS_OPEN) {
-      session()->flash('error', 'The Ticket is being Processed you cant edit it');
+    if ($req->status !== RequestModel::STATUS_PENDING) {
+      session()->flash('warning', 'The Ticket is being Processed you cant edit it');
       return redirect()->back();
     }
 
@@ -120,13 +120,17 @@ class RequestController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id)
+  public function update(ReqRequest $request, $id)
   {
     $req = RequestModel::find($id);
+
+    if ($req->status !== RequestModel::STATUS_PENDING) {
+      session()->flash('warning', 'The Ticket is being Processed you cant edit it');
+      return redirect()->back();
+    }
+
     $req->request_type_id = $request->request_type_id;
     $req->description = $request->description;
-    $req->status = $request->status;
-    $req->priority = $request->priority;
     $req->save();
 
     session()->flash('success', 'The Ticket is being Processed you cant edit it');
