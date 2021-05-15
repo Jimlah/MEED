@@ -563,6 +563,9 @@ video {
 .absolute {
 	position: absolute;
 }
+.fixed {
+	position: fixed;
+}
 .right-0 {
 	right: 0px;
 }
@@ -600,6 +603,9 @@ video {
 }
 .-ml-10 {
 	margin-left: -2.5rem;
+}
+.-mt-5 {
+	margin-top: -1.25rem;
 }
 .flex {
 	display: flex;
@@ -753,6 +759,16 @@ video {
 	--tw-space-x-reverse: 0;
 	margin-right: calc(3.5rem * var(--tw-space-x-reverse));
 	margin-left: calc(3.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+	--tw-space-y-reverse: 0;
+	margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+	margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+.space-y-1 > :not([hidden]) ~ :not([hidden]) {
+	--tw-space-y-reverse: 0;
+	margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
+	margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
 }
 .divide-y > :not([hidden]) ~ :not([hidden]) {
 	--tw-divide-y-reverse: 0;
@@ -1061,6 +1077,10 @@ video {
 	--tw-text-opacity: 1;
 	color: rgba(0, 0, 0, var(--tw-text-opacity));
 }
+.text-blue-700 {
+	--tw-text-opacity: 1;
+	color: rgba(29, 78, 216, var(--tw-text-opacity));
+}
 .antialiased {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -1072,6 +1092,9 @@ video {
 .shadow-sm {
 	--tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.hover\:block:hover {
+	display: block;
 }
 .hover\:border-\[\#0797E0\]:hover {
 	--tw-border-opacity: 1;
