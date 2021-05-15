@@ -18,17 +18,18 @@
 </head>
 
 <body>
-    <div class="static h-screen bg-center bg-cover" style="background-image: url('{{ asset('img/bg-image.jpg') }}');" x-data="nav()">
-        <button class="absolute mx-2 my-3 lg:hidden" x-on:click="toggle"
-        :class="{'hidden': isOpen() == false}">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-[#0797E0]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+    <div class="static h-screen bg-center bg-cover" style="background-image: url('{{ asset('img/bg-image.jpg') }}');"
+        x-data="nav()">
+        <button class="absolute mx-2 my-3 lg:hidden" x-on:click="toggle" :class="{'hidden': isOpen() == false}">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-[#0797E0]" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
         </button>
         <div class="grid w-full h-full grid-cols-6">
             <div class="flex flex-col justify-between col-span-1 py-2 bg-white lg:pr-0 lg:bg-opacity-40 lg:flex"
-              :class="{'hidden': isOpen(), 'absolute h-screen pr-5 bg-opacity-90': isOpen() == false}"
-              x-on:click.away="close">
+                :class="{'hidden': isOpen(), 'absolute h-screen pr-5 bg-opacity-90': isOpen() == false}"
+                x-on:click.away="close">
                 <div class="flex flex-col items-start space-y-8">
                     <span class="flex items-center justify-start pl-5 space-x-1 text-xl font-bold text-[#0797E0]">
                         <span>
@@ -79,13 +80,14 @@
                         <a href="{{ route('request-types.index') }}"
                             class="flex pl-5 space-x-1 text-sm border-l-2 hover:text-[#0797E0] hover:border-[#0797E0] {{ url()->current() == route('request-types.index') ? 'text-[#0797E0] border-[#0797E0]' : '' }}">
                             <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                        d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z">
+                                    </path>
                                 </svg>
                             </span>
-                            <span class="font-semibold">Request Types</span>
+                            <span class="font-semibold">Tickets</span>
                         </a>
                     </div>
                 </div>
@@ -226,8 +228,8 @@
                 </div>
                 <div class="flex flex-col w-full h-full p-5 space-y-3">
                     <span class="text-xs font-bold text-gray-500 justify-self-start">
-                      <livewire:alerts>
-                        {{ pagePath(url()->current()) }}
+                        <livewire:alerts>
+                            {{ pagePath(url()->current()) }}
                     </span>
                     <div class="flex w-full h-full overscroll-auto">
                         @yield('body')
