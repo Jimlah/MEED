@@ -55,7 +55,7 @@
                             <span class="font-semibold">Dashbaord</span>
                         </a>
                         <a href="{{ route('users.index') }}"
-                            class="flex pl-5 space-x-1 text-sm border-l-2 hover:text-[#0797E0] hover:border-[#0797E0] {{ url()->current() == route('requests.create') ? 'text-[#0797E0] border-[#0797E0]' : '' }}">
+                            class="flex pl-5 space-x-1 text-sm border-l-2 hover:text-[#0797E0] hover:border-[#0797E0] {{ url()->current() == route('users.index') ? 'text-[#0797E0] border-[#0797E0]' : '' }}">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor">

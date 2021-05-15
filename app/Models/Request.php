@@ -5,13 +5,14 @@ namespace App\Models;
 use App\Models\User;
 use App\Traits\Search;
 use App\Models\RequestType;
+use App\Traits\ClientFilter;
 use App\Traits\Multitenantable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Request extends Model
 {
-  use HasFactory, Search, Multitenantable;
+  use HasFactory, Search, Multitenantable, ClientFilter;
 
   const STATUS_PENDING = 1;
   const STATUS_OPEN = 2;
@@ -52,17 +53,17 @@ class Request extends Model
 
   public function client()
   {
-    return $this->belongsTo(User::class, 'client_id')->get()->first();
+    return $this->belongsTo(User::class, 'client_id');
   }
 
   public function org()
   {
-    return $this->belongsTo(User::class, 'client_id')->get()->first();
+    return $this->belongsTo(User::class, 'client_id');
   }
 
   public function request_type()
   {
-    return $this->belongsTo(RequestType::class, 'request_type_id')->get()->first();
+    return $this->belongsTo(RequestType::class, 'request_type_id');
   }
 
   public function status()

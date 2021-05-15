@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Search;
+use App\Models\Request;
 use App\Models\VerifyUser;
 use App\Traits\Multitenantable;
 use Illuminate\Notifications\Notifiable;
@@ -90,5 +91,10 @@ class User extends Authenticatable
   public function verifyUser()
   {
     return $this->hasOne(VerifyUser::class);
+  }
+
+  public function requests()
+  {
+    return $this->hasMany(Request::class, 'client_id');
   }
 }

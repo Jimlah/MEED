@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\RequestType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Request as RequestModel;
 
 class RequestController extends Controller
@@ -19,7 +20,6 @@ class RequestController extends Controller
   {
     $reqs = RequestModel::search($request->q)->paginate(10);
     $reqs->appends(['q' => $request->q]);
-
     return view('user.request.index', [
       "reqs" => $reqs
     ]);
@@ -48,7 +48,7 @@ class RequestController extends Controller
   public function store(Request $request)
   {
     $type = $request->input('type');
-    if ($type != "self") {
+    if ($type == "others") {
       $validate = $request->validate([
         'firstname' => 'required|string|unique:user',
         'lastname' => 'required|string',
@@ -64,7 +64,7 @@ class RequestController extends Controller
 
     RequestModel::create([
       'org_id' => $validate->org_id ?? auth()->user()->org_id,
-      'client_id' => $validate->id ?? auth()->user()->org_id,
+      'client_id' => $validate->id ?? auth()->user()->id,
       'request_type_id' => $request->input('request_type_id'),
       'description' => $request->input('description'),
       'status' => RequestModel::STATUS_PENDING,
@@ -104,9 +104,11 @@ class RequestController extends Controller
       return redirect()->back();
     }
 
+    $requesttypes = RequestType::all();
 
     return view('user.request.edit', [
-      'reqmod' => $req
+      'reqmod' => $req,
+      'requesttypes' => $requesttypes
     ]);
   }
 

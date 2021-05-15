@@ -47,11 +47,11 @@
                     <tr>
                         <td
                             class="px-6 py-2 text-sm font-bold text-gray-500 border-b border-gray-800 border-opacity-50 whitespace-nowrap">
-                            <span>{{ $req->client()->firstname }}</span>
+                            <span>{{ $req->client->firstname }}</span>
                         </td>
                         <td
                             class="px-6 py-2 text-sm font-bold text-gray-500 border-b border-gray-800 border-opacity-50 whitespace-nowrap">
-                            {{ $req->request_type()->name }}
+                            {{ $req->request_type->name }}
                         </td>
                         <td
                             class="px-6 py-2 text-sm font-bold text-gray-500 truncate border-b border-gray-800 border-opacity-50 whitespace-nowrap">

@@ -52,7 +52,6 @@ trait Search
 
     //   $fields = array_diff($fields, $model->getHidden(), $others);
     // }
-
     return $fields;
   }
 }
