@@ -15,9 +15,14 @@ class RequestController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
+  public function index(Request $request)
   {
-    return view('user.request.index');
+    $reqs = RequestModel::search($request->q)->paginate(10);
+    $reqs->appends(['q' => $request->q]);
+
+    return view('user.request.index', [
+      "reqs" => $reqs
+    ]);
   }
 
   /**
@@ -42,22 +47,27 @@ class RequestController extends Controller
    */
   public function store(Request $request)
   {
-    $user = User::firstOrNew(['email' => request('email')]);
-
-    $user->firstname = $request('firstname');
-    $user->lastname = $request('lastname');
-    $user->org_id = auth()->user()->org_id;
-    $user->role = User::USER_CLIENT;
-    $user->save();
+    $type = $request->input('type');
+    if ($type != "self") {
+      $validate = $request->validate([
+        'firstname' => 'required|string|unique:user',
+        'lastname' => 'required|string',
+        'email' => 'required|email',
+      ]);
+      $user = User::firstOrCreate(['email' => $request->input('email')]);
+      $user->firstname = $request->input('firstname');
+      $user->lastname = $request->input('lastname');
+      $user->org_id = auth()->user()->org_id;
+      $user->role = User::USER_CLIENT;
+      $user->save();
+    }
 
     RequestModel::create([
-      'org_id' => $user->org_id ?? auth()->user()->org_id,
-      'client_id' => $user->id ?? auth()->user()->org_id,
-      'request_type_id' => $request('request_type_id'),
-      'description' => $request('description'),
-      'status' => $request('status'),
-      'priority' => $request('priority'),
-      'period' => $request('period'),
+      'org_id' => $validate->org_id ?? auth()->user()->org_id,
+      'client_id' => $validate->id ?? auth()->user()->org_id,
+      'request_type_id' => $request->input('request_type_id'),
+      'description' => $request->input('description'),
+      'status' => RequestModel::STATUS_PENDING,
     ]);
 
     session()->flash('success', 'You have created a ticket for the new user');
