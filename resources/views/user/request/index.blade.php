@@ -47,7 +47,7 @@
                     <tr>
                         <td
                             class="px-6 py-2 text-sm font-bold text-gray-500 border-b border-gray-800 border-opacity-50 whitespace-nowrap">
-                            <span>{{ $req->client->firstname ?? "" }}</span>
+                            <span>{{ $req->client->firstname ?? '' }}</span>
                         </td>
                         <td
                             class="px-6 py-2 text-sm font-bold text-gray-500 border-b border-gray-800 border-opacity-50 whitespace-nowrap">
@@ -59,11 +59,8 @@
                                 {{ $req->description }}
                             </span>
                         </td>
-                        <td
-                            class="px-6 py-2 text-sm font-bold text-gray-500 border-b border-gray-800 border-opacity-50 whitespace-nowrap">
-                            <span>
-                                {{ $req->status() }}
-                            </span>
+                        <td class="static px-6 py-2 text-sm font-bold text-gray-500 border-b border-gray-800 border-opacity-50 whitespace-nowrap group">
+                          @livewire('change-request-status', ["req" => $req])
                         </td>
                         <td
                             class="px-6 py-2 text-sm font-bold text-gray-500 border-b border-gray-800 border-opacity-50 whitespace-nowrap">

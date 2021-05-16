@@ -67,12 +67,10 @@
                         <td
                             class="px-6 py-2 text-sm font-bold text-gray-500 border-b border-gray-800 border-opacity-50 whitespace-nowrap">
                             <div class="group">
-                                <span class="px-2 py-1 text-white bg-green-500 bg-opacity-40 group-hover:hidden">
-                                    Active
+                                <span class="px-2 py-1 text-white bg-opacity-40 group-hover:hidden {{$user->status ? 'bg-green-500': 'bg-red-500' }} ">
+                                    {{$user->status ? 'Active': 'Deactive' }}
                                 </span>
-                                <span class="hidden text-black group-hover:block">
-                                    <input type="range" min="0" max="1" class="w-8 h-4 py-2 bg-green-500">
-                                </span>
+                                @livewire('change-user-status', ['user' => $user])
                             </div>
                         </td>
                         <td
