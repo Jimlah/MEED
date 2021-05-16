@@ -20,21 +20,26 @@ use App\Http\Controllers\User\RequestTypeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
 
-Route::get('/login', [LoginController::class, 'index'])->name('showlogin');
-Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::middleware('notLoggedIn')->group(function () {
+  Route::get('/login', [LoginController::class, 'index'])->name('showlogin');
+  Route::post('/login', [LoginController::class, 'login'])->name('login');
 
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/register', [RegisterController::class, 'index'])->name('showregister');
-Route::post('/register', [RegisterController::class, 'register'])->name('register');
+  Route::get('/register', [RegisterController::class, 'index'])->name('showregister');
+  Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
-Route::get('/recover-password', [RegisterController::class, 'showRecoverPassword'])->name('showRecoverPassword');
-Route::post('/recover-password', [RegisterController::class, 'recoverPassword'])->name('recoverPassword');
+  Route::get('/recover-password', [RegisterController::class, 'showRecoverPassword'])->name('showRecoverPassword');
+  Route::post('/recover-password', [RegisterController::class, 'recoverPassword'])->name('recoverPassword');
+});
 
-Route::resource('/dashboards', DashboardController::class)->only('index');
-Route::resource('/requests', RequestController::class)->except('destroy');
-Route::resource('users', UserController::class)->except('destroy');
-Route::resource('request-types', RequestTypeController::class)->except(['show', 'destroy']);
+
+Route::middleware('loggedIn')->group(function () {
+  Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+  Route::resource('/dashboards', DashboardController::class)->only('index');
+  Route::resource('/requests', RequestController::class)->except('destroy');
+  Route::resource('users', UserController::class)->except('destroy');
+  Route::resource('request-types', RequestTypeController::class)->except(['show', 'destroy']);
+});
