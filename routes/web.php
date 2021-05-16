@@ -40,6 +40,6 @@ Route::middleware('loggedIn')->group(function () {
   Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
   Route::resource('/dashboards', DashboardController::class)->only('index');
   Route::resource('/requests', RequestController::class)->except('destroy');
-  Route::resource('users', UserController::class)->except('destroy');
-  Route::resource('request-types', RequestTypeController::class)->except(['show', 'destroy']);
+  Route::resource('users', UserController::class)->except('destroy')->middleware('admin');
+  Route::resource('request-types', RequestTypeController::class)->except(['show', 'destroy'])->middleware('superadmin');
 });

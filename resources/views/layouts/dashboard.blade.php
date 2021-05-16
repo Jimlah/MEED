@@ -176,7 +176,9 @@
                             </li>
                         </ul>
                     </div>
-
+                    <span>
+                      {{ auth()->user()->firstname }}
+                    </span>
                     <div class="static flex flex-col" x-data="dropdown()">
                         <button class="flex items-center justify-center" x-on:click="toggle">
                             <img src="{{ asset('img/user.png') }}" class="w-10 h-10 rounded-full">

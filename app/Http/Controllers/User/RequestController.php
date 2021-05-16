@@ -100,7 +100,7 @@ class RequestController extends Controller
   {
     $req = RequestModel::find($id);
 
-    if ($req->status !== RequestModel::STATUS_PENDING) {
+    if ($req->status != RequestModel::STATUS_PENDING) {
       session()->flash('warning', 'The Ticket is being Processed you cant edit it');
       return redirect()->back();
     }
