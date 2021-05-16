@@ -2,7 +2,7 @@
 
 @section('body')
 <div class="grid w-full h-full grid-cols-2 gap-5">
-  <div class="p-5 bg-white md:col-span-1 col-span-full bg-opacity-90">
+  <div class="p-5 bg-white md:col-span-1 col-span-full bg-opacity-90 -z-20">
     <div id="chart" class="h-full"></div>
   </div>
   <div class="hidden p-5 bg-white md:col-span-1 md:block bg-opacity-90">
@@ -18,7 +18,9 @@
 <script>
   const chart = new Chartisan({
     el: '#chart',
-    data: {!! $data !!}
+    data: {!! $data !!},
+    hooks: new ChartisanHooks()
+    .legend()
   });
 </script>
 @endsection

@@ -23,14 +23,7 @@ class LoginController extends Controller
     if (Auth::attempt($validated, $request->only('remember') ?? false)) {
 
       session()->flash('success', "You have successfully logged in");
-      if (auth()->user()->role == User::USER_SUPER_ADMIN || auth()->user()->role == User::USER_ADMIN || auth()->user()->role == User::USER_MEMBER) {
-
         return redirect()->route('dashboards.index');
-      }
-
-      if (auth()->user()->role == User::USER_CLIENT) {
-        return redirect()->route('requests.index');
-      }
     }
 
     session()->flash('error', "Invalid Credentials");

@@ -24,25 +24,45 @@ class DashboardController extends Controller
 
     $label = [];
     $sdata = [];
+    $cl = [];
     foreach ($req as $key => $value) {
       $label[] = $key;
       $sdata[] = count($value);
+      $cl[] = $value->countBy('status');
+      $pending = [];
+      $open = [];
+      $processing = [];
+      $close = [];
+
+      foreach ($cl as $v) {
+        $pending[] = $v->all()[1] ?? 0;
+        $open[] = $v->all()[2] ?? 0;
+        $processing[] = $v->all()[3] ?? 0;
+        $close[] = $v->all()[4] ?? 0;
+      }
+    }
+    $statuses = [
+      'Pending' => $pending,
+      'open' => $open,
+      'processing' => $processing,
+      'close' => $close,
+    ];
+
+    $status = [];
+    foreach ($statuses as $key => $value) {
+      $status[] = [
+        "name" => "$key",
+        "values" => $value
+      ];
     }
 
     $data = [
       "chart" => ["labels" => $label],
-      "datasets" => [
-        [
-          "name" => "Monthly Request",
-          "values" => $sdata
-        ]
-      ]
+      "datasets" => $status
     ];
 
     $data = json_encode($data);
 
-
-    // dd($label, array_values($data));
     return view('user.dashboard.index', [
       "data" => $data
     ]);
