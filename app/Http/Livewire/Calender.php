@@ -16,7 +16,7 @@ class Calender extends Component
     $requests = Request::all();
     foreach ($requests as $request) {
       $events[] = Calendar::event(
-        $request->request_type->name . " " . $request->client->firstname, //event title
+        $request->request_type->name . " ", //. $request->client->firstname ?? " ", //event title
         true, //full day event?
         new Carbon($request->created_at), //start time (you can also use Carbon instead of DateTime)
         Carbon::now(), //end time (you can also use Carbon instead of DateTime)

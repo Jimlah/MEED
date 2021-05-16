@@ -51,21 +51,27 @@ class RequestController extends Controller
     $type = $request->input('type');
     if ($type == "others") {
       $validate = $request->validate([
-        'firstname' => 'required|string|unique:user',
+        'firstname' => 'required|string',
         'lastname' => 'required|string',
         'email' => 'required|email',
       ]);
-      $user = User::firstOrCreate(['email' => $request->input('email')]);
-      $user->firstname = $request->input('firstname');
-      $user->lastname = $request->input('lastname');
-      $user->org_id = auth()->user()->org_id;
-      $user->role = User::USER_CLIENT;
-      $user->save();
-    }
 
+      $user = User::where('email', $request->input('email'))->get()->first();
+      if ($user == null) {
+
+        $user = User::create([
+          'email' => $request->input('email'),
+          'firstname' => $request->input('firstname'),
+          'lastname' => $request->input('lastname'),
+          'org_id' => auth()->user()->org_id,
+          'role' => User::USER_CLIENT,
+        ]);
+      }
+
+    }
     RequestModel::create([
-      'org_id' => $validate->org_id ?? auth()->user()->org_id,
-      'client_id' => $validate->id ?? auth()->user()->id,
+      'org_id' => $user->org_id ?? auth()->user()->org_id,
+      'client_id' => $user->id ?? auth()->user()->id,
       'request_type_id' => $request->input('request_type_id'),
       'description' => $request->input('description'),
       'status' => RequestModel::STATUS_PENDING,

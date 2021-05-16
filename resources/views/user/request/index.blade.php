@@ -47,7 +47,7 @@
                     <tr>
                         <td
                             class="px-6 py-2 text-sm font-bold text-gray-500 border-b border-gray-800 border-opacity-50 whitespace-nowrap">
-                            <span>{{ $req->client->firstname }}</span>
+                            <span>{{ $req->client->firstname ?? "" }}</span>
                         </td>
                         <td
                             class="px-6 py-2 text-sm font-bold text-gray-500 border-b border-gray-800 border-opacity-50 whitespace-nowrap">
@@ -76,7 +76,13 @@
                                         </path>
                                     </svg>
                                 </span>
-                                @livewire('flag-request', ["reqid"=>$req->id])
+                                @if (auth()->user()->role != \App\Models\User::USER_CLIENT)
+                                    @livewire('flag-request', ["reqid"=>$req->id])
+                                @else
+                                    <span class="hidden group-hover:block">
+                                        {{ $req->priority() }}
+                                    </span>
+                                @endif
                             </div>
                         </td>
                         <td
@@ -98,14 +104,16 @@
                                         </path>
                                     </svg>
                                 </a>
-                                <a href="{{ route('requests.edit', [$req->id]) }}">
-                                    <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                                        </path>
-                                    </svg>
-                                </a>
+                                @if (auth()->user()->id == $req->client_id)
+                                    <a href="{{ route('requests.edit', [$req->id]) }}">
+                                        <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                @endif
                             </div>
                         </td>
 
