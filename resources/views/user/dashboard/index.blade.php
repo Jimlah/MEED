@@ -18,7 +18,7 @@
 <script>
   const chart = new Chartisan({
     el: '#chart',
-    url: "{{ route('charts.samplechart') }}",
+    data: {!! $data !!}
   });
 </script>
 @endsection

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Charts;
 
+use App\Models\Request as ModelsRequest;
 use Chartisan\PHP\Chartisan;
 use ConsoleTVs\Charts\BaseChart;
 use Illuminate\Http\Request;
@@ -44,8 +45,25 @@ class SampleChart extends BaseChart
   public function handler(Request $request): Chartisan
   {
     return Chartisan::build()
-      ->labels(['First', 'Second', 'Third'])
-      ->dataset('Sample', [1, 2, 3])
-      ->dataset('Sample 2', [3, 2, 1]);
+      ->labels([1])
+      ->dataset('Sample', [2]);
+  }
+
+
+  private function xData(){
+    $req =  ModelsRequest::orderBy('created_at')
+      ->get()
+      ->groupBy(function ($x_data) {
+        return $x_data->created_at->format('Y M d');
+      });
+
+    $sample_label = [];
+    $sample_data = [];
+    foreach ($req as $x_key => $x_value) {
+      $sample_label[] = $x_key;
+      $sample_data[] = count($x_value);
+    }
+    $sample = [$sample_label, $sample_data];
+    return $sample;
   }
 }
