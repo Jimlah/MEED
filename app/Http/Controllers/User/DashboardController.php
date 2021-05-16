@@ -25,14 +25,14 @@ class DashboardController extends Controller
     $label = [];
     $sdata = [];
     $cl = [];
+    $pending = [];
+    $open = [];
+    $processing = [];
+    $close = [];
     foreach ($req as $key => $value) {
       $label[] = $key;
       $sdata[] = count($value);
       $cl[] = $value->countBy('status');
-      $pending = [];
-      $open = [];
-      $processing = [];
-      $close = [];
 
       foreach ($cl as $v) {
         $pending[] = $v->all()[1] ?? 0;
