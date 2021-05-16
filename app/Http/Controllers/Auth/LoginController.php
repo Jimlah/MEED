@@ -22,8 +22,12 @@ class LoginController extends Controller
 
     if (Auth::attempt($validated, $request->only('remember') ?? false)) {
 
+      if (!auth()->user()->status) {
+        session()->flash('warning', "You have been deactivated. Kindly contact the admin");
+        Auth::logout();
+      }
       session()->flash('success', "You have successfully logged in");
-        return redirect()->route('dashboards.index');
+      return redirect()->route('dashboards.index');
     }
 
     session()->flash('error', "Invalid Credentials");

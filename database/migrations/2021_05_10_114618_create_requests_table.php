@@ -22,6 +22,7 @@ class CreateRequestsTable extends Migration
             $table->string('status')->nullable();
             $table->string('priority')->nullable();
             $table->integer('period')->nullable();
+            $table->dateTime('at_period')->nullable();
             $table->timestamps();
         });
     }
