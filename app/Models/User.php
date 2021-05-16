@@ -32,6 +32,8 @@ class User extends Authenticatable
     'lastname',
     'email',
     'role',
+    'password',
+    'status'
   ];
 
   protected  $searchable = [

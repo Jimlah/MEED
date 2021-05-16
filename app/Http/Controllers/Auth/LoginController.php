@@ -19,7 +19,6 @@ class LoginController extends Controller
   public function login(LoginRequest $request)
   {
     $validated = $request->except(['remember', '_token']);
-
     if (Auth::attempt($validated, $request->only('remember') ?? false)) {
 
       if (!auth()->user()->status) {

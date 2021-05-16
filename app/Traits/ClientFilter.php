@@ -11,10 +11,12 @@ trait ClientFilter
 
   public static function bootClientFilter()
   {
-    if (Auth::user()->role == User::USER_CLIENT) {
-    static::addGlobalScope('client_id', function (Builder $builder) {
-        $builder->where('client_id', Auth::user()->id);
-      });
+    if (Auth::check()) {
+      if (Auth::user()->role == User::USER_CLIENT) {
+        static::addGlobalScope('client_id', function (Builder $builder) {
+            $builder->where('client_id', Auth::user()->id);
+          });
+        }
     }
   }
 }

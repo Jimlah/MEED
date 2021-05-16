@@ -32,7 +32,8 @@ Route::middleware('notLoggedIn')->group(function () {
   Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
   Route::get('/recover-password', [RegisterController::class, 'showRecoverPassword'])->name('showRecoverPassword');
-  Route::post('/recover-password', [RegisterController::class, 'recoverPassword'])->name('recoverPassword');
+  Route::post('/recover-password',  [RegisterController::class, 'recoverPasswordWithEmail'])->name('recoverPasswordWithEmail');
+  Route::get('/recover-password/{token}', [RegisterController::class, 'recoverPassword'])->name('recoverPassword');
 });
 
 

@@ -6,7 +6,7 @@
             <span>MEED</span>
             <span class="text-2xl font-extrabold tracking-tighter">Recover Your Password</span>
         </div>
-        <form action="" method="POST" class="flex flex-col items-start w-full space-y-7">
+        <form action="{{ route('recoverPasswordWithEmail') }}" method="POST" class="flex flex-col items-start w-full space-y-7">
             <div class="hidden">
               @csrf()
             </div>
