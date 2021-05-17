@@ -40,7 +40,7 @@
                             </svg>
                         </span>
                         <span>
-                            MEED
+                            {{ env("APP_NAME") }}
                         </span>
                     </span>
                     <div class="flex flex-col space-y-2 text-gray-800">
