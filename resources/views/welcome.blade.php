@@ -18,7 +18,7 @@
 
 <body class="w-full h-screen ">
     <div class="flex items-center justify-center w-full h-screen gap-6 text-white bg-center bg-no-repeat bg-cover"
-        style="background-image: url('{{ asset('img/hm.jpg') }}')">
+        style="background-image: url('{{ asset('img/hm.jpg') }}');">
         <a href="{{ route('showlogin') }}" class="px-3 py-2 text-5xl font-bold bg-blue-500 rounded hover:bg-opacity-50">Login</a>
         <a href="{{ route('showregister') }}" class="px-3 py-2 text-5xl font-bold bg-red-500 rounded hover:bg-opacity-50">Register</a>
     </div>
